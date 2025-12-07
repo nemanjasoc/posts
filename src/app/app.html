@@ -1,21 +1,13 @@
 <div class="app-shell">
-	<ng-container *ngIf="currentUser as user; else notLogged">
-		<header class="toolbar">
-			<div class="toolbar-left">Posts App</div>
-			<div class="toolbar-right">
-				<span class="toolbar-username">Logged in as <strong>{{ user.username }}</strong></span>
-				<button (click)="logout()" class="toolbar-logout">Logout</button>
-			</div>
-		</header>
+  <header class="toolbar" *ngIf="currentUser as user">
+    <div class="toolbar-left">Posts App</div>
+    <div class="toolbar-right">
+      <span class="toolbar-username">Logged in as <strong>{{ user.username }}</strong></span>
+      <button (click)="logout()" class="toolbar-logout">Logout</button>
+    </div>
+  </header>
 
-		<main class="app-container">
-			<router-outlet />
-		</main>
-	</ng-container>
-
-	<ng-template #notLogged>
-		<main class="app-container">
-			<router-outlet />
-		</main>
-	</ng-template>
+  <main class="app-container">
+    <router-outlet></router-outlet>
+  </main>
 </div>
