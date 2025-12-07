@@ -1,0 +1,21 @@
+<div class="post-details-wrap card">
+  <div *ngIf="loading" class="muted">Loading...</div>
+
+  <div *ngIf="post">
+    <h2>{{ post.title }}</h2>
+    <div class="meta muted">By user {{ post.userId }} · {{ post.views }} views · 👍 {{ post.reactions.likes }} · 👎 {{ post.reactions.dislikes }}</div>
+    <div class="tags" style="margin-top:8px">
+      <span *ngFor="let t of post.tags" class="tag-badge-detail">{{ t }}</span>
+    </div>
+
+    <div class="body" style="margin-top:12px">
+      <p>{{ post.body }}</p>
+    </div>
+
+    <div style="margin-top:16px">
+      <button (click)="goBack()">Back</button>
+    </div>
+  </div>
+
+  <div *ngIf="!post && !loading" class="muted">Post not found.</div>
+</div>

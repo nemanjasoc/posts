@@ -11,6 +11,54 @@
 .post-title { font-weight:600; margin-bottom:4px }
 .post-excerpt { color:var(--muted); font-size:13px }
 .tag-badge { display:inline-block; margin:2px 4px; padding:4px 6px; background:#f1f5f9; border-radius:4px; font-size:12px }
+.tag-select .ng-select-container {
+	border: 1px solid rgba(16,24,40,0.12);
+	background: #fff;
+	border-radius: 6px;
+	padding: 2px 6px;
+	min-height: 40px;
+}
+
+.tag-select .ng-placeholder {
+	color: var(--muted);
+}
+
+/* value chips use primary color for stronger contrast */
+.tag-select .ng-value {
+	background: var(--primary);
+	color: #fff;
+	padding: 4px 8px;
+	border-radius: 4px;
+	margin-right: 6px;
+}
+
+.tag-select .ng-value .ng-value-label { color: #fff }
+
+.tag-select .ng-arrow-wrapper { color: var(--muted) }
+.tag-select .ng-clear-wrapper { color: var(--muted) }
+
+/* dropdown panel: solid background + shadow so items are readable */
+.ng-select .ng-dropdown-panel {
+	background: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 6px 18px rgba(31,41,55,0.12);
+	border: 1px solid rgba(16,24,40,0.06);
+	padding: 6px 0;
+}
+
+.ng-select .ng-dropdown-panel .ng-option {
+	padding: 8px 12px;
+	background: transparent;
+	color: var(--text);
+}
+
+/* selected option inside dropdown */
+.ng-select .ng-dropdown-panel .ng-option.ng-option-selected,
+.ng-select .ng-dropdown-panel .ng-option:active,
+.ng-select .ng-dropdown-panel .ng-option:hover {
+	background: rgba(43,111,191,0.14);
+	color: #0f172a;
+}
 .pagination-row { display:flex; justify-content:center; align-items:center; gap:12px; margin-top:12px }
 .pagination { display:flex; gap:8px; align-items:center }
 .page-btn { min-width:36px }

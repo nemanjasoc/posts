@@ -23,4 +23,9 @@ export class PostsApiService {
 
     return this.http.get<PostsSearchResponse>(this.baseUrl, { params: httpParams });
   }
+
+  getPostById(postId: number): Observable<Post> {
+    const url = this.baseUrl.replace('/search', '') + `/${postId}`;
+    return this.http.get<Post>(url);
+  }
 }

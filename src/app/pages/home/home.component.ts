@@ -79,7 +79,8 @@ export class HomePage {
   }
 
   onRowClick(post: Post): void {
-    this.selectedPost = post;
+    // navigate to details page; pass the post through navigation state if available
+    this.router.navigate(['/posts', post.id], { state: { post } });
   }
 
   rowHighlightClass(post: Post): boolean {
