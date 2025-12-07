@@ -24,7 +24,7 @@ export class LoginComponent {
     if (ok) {
       this.router.navigate(['/home']);
     } else {
-      this.error = 'Pogrešan username ili password';
+      this.error = 'Incorrect username or password';
     }
   }
 }

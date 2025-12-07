@@ -7,9 +7,9 @@ export class AuthService {
   private readonly storageKey = 'posts_app_user';
 
   login(username: string, password: string): boolean {
-    const u = (username || '').trim().toLowerCase();
-    const p = (password || '').trim().toLowerCase();
-    const ok = u.startsWith('test') && p.startsWith('test123');
+    const name = (username || '').trim().toLowerCase();
+    const pass = (password || '').trim().toLowerCase();
+    const ok = name === 'test' && pass === 'test123'
     if (ok) {
       localStorage.setItem(this.storageKey, JSON.stringify({ username: username.trim() }));
     }
