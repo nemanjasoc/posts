@@ -1,0 +1,108 @@
+<div class="home-wrap">
+  <div class="header">
+    <h2>Home</h2>
+    <div class="header-right">
+      <div class="muted">Welcome, <strong>{{ username }}</strong></div>
+      <button class="secondary" (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="controls card">
+    <div class="controls-row">
+      <input
+        [(ngModel)]="searchQuery"
+        placeholder="Search posts..."
+        (keyup.enter)="page=1; loadPosts()"
+        class="search-input"
+      />
+
+      <ng-select
+        [items]="tags"
+        bindLabel=""
+        placeholder="Tags"
+        [(ngModel)]="selectedTag"
+        [clearable]="true"
+        class="tag-select"
+      >
+      </ng-select>
+
+      <button (click)="page=1; loadPosts()">Search</button>
+      <button class="secondary" (click)="clearFilters()">Clear</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div *ngIf="loading" class="muted">Loading posts...</div>
+
+    <table class="posts-table">
+      <thead>
+        <tr class="table-header">
+          <th class="col-id">ID</th>
+          <th class="col-title">Title</th>
+          <th class="col-tags">Tags</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let post of posts"
+          (click)="onRowClick(post)"
+          [class.highlight-danger]="rowHighlightClass(post)"
+          class="table-row"
+        >
+          <td class="col-id">{{ post.id }}</td>
+          <td class="col-title">
+            <div class="post-title">{{ post.title }}</div>
+            <div class="post-excerpt">{{ post.body | slice:0:140 }}{{ post.body.length>140 ? '...' : '' }}</div>
+          </td>
+          <td class="col-tags">
+            <ng-container *ngIf="post.tags.length; else none">
+              <span *ngFor="let t of post.tags" class="tag-badge">{{ t }}</span>
+            </ng-container>
+            <ng-template #none><span class="muted">-</span></ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <button [disabled]="!canPrevious" (click)="goToPage(page-1)">Prev</button>
+      <ng-container *ngFor="let pageNumber of visiblePages">
+        <button [class.active]="page==pageNumber" (click)="goToPage(pageNumber)" class="page-btn">{{ pageNumber }}</button>
+      </ng-container>
+      <button [disabled]="!canNext" (click)="goToPage(page+1)">Next</button>
+      <div class="muted pagination-info">Total: {{ total }}</div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedPost" class="card post-details">
+    <h3>Post details</h3>
+    <div class="details-grid">
+      <div class="details-field">
+        <label>ID</label>
+        <input [value]="selectedPost.id" readonly />
+      </div>
+      <div class="details-field">
+        <label>Title</label>
+        <input [value]="selectedPost.title" readonly />
+      </div>
+      <div class="details-field full-width">
+        <label>Body</label>
+        <textarea rows="6" readonly>{{ selectedPost.body }}</textarea>
+      </div>
+      <div class="details-field">
+        <label>Tags</label>
+        <div class="tags-display">
+          <span *ngFor="let t of selectedPost.tags" class="tag-badge-detail">{{ t }}</span>
+        </div>
+      </div>
+      <div class="details-field">
+        <label>Reactions</label>
+        <div class="reactions">
+          <span class="reaction-item">👍 {{ selectedPost.reactions.likes }}</span>
+          <span class="reaction-item">👎 {{ selectedPost.reactions.dislikes }}</span>
+          <span class="reaction-item">👁️ {{ selectedPost.views }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
