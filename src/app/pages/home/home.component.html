@@ -1,9 +1,8 @@
 <div class="home-wrap">
-  <div class="header">
+    <div class="header">
     <h2>Home</h2>
     <div class="header-right">
       <div class="muted">Welcome, <strong>{{ username }}</strong></div>
-      <button class="secondary" (click)="logout()">Logout</button>
     </div>
   </div>
 
@@ -64,13 +63,19 @@
       </tbody>
     </table>
 
-    <div class="pagination">
-      <button [disabled]="!canPrevious" (click)="goToPage(page-1)">Prev</button>
-      <ng-container *ngFor="let pageNumber of visiblePages">
-        <button [class.active]="page==pageNumber" (click)="goToPage(pageNumber)" class="page-btn">{{ pageNumber }}</button>
-      </ng-container>
-      <button [disabled]="!canNext" (click)="goToPage(page+1)">Next</button>
-      <div class="muted pagination-info">Total: {{ total }}</div>
+    <div class="pagination-row">
+      <div class="pagination">
+        <button title="First" [disabled]="!canPrevious" (click)="goToPage(1)">«</button>
+        <button title="Previous" [disabled]="!canPrevious" (click)="goToPage(page-1)">Prev</button>
+
+        <ng-container *ngFor="let pageNumber of visiblePages">
+          <button [class.active]="page==pageNumber" (click)="goToPage(pageNumber)" class="page-btn">{{ pageNumber }}</button>
+        </ng-container>
+
+        <button title="Next" [disabled]="!canNext" (click)="goToPage(page+1)">Next</button>
+        <button title="Last" [disabled]="!canNext" (click)="goToPage(totalPages)">»</button>
+      </div>
+      <div class="muted pagination-info">Page {{ page }} of {{ totalPages }}</div>
     </div>
   </div>
 

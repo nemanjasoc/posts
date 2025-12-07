@@ -10,7 +10,7 @@ export class AuthService {
     const normalizedUsername = (username || '').trim().toLowerCase();
     const normalizedPassword = (password || '').trim().toLowerCase();
     const isValid =
-      normalizedUsername.startsWith('test') && normalizedPassword.startsWith('test123');
+      normalizedUsername === 'test' && normalizedPassword === 'test123';
     if (isValid) {
       localStorage.setItem(this.storageKey, JSON.stringify({ username: username.trim() }));
     }

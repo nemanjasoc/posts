@@ -50,3 +50,31 @@ button.secondary {
 
 /* table row highlight for danger */
 .highlight-danger { background: rgba(176,0,32,0.06); }
+
+/* Top toolbar */
+.toolbar {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	padding:12px 16px;
+	background: var(--primary);
+	color: #fff;
+}
+.toolbar .toolbar-left { font-weight:700 }
+.toolbar .toolbar-right { display:flex; gap:12px; align-items:center }
+
+.app-shell { min-height:100vh; display:flex; flex-direction:column }
+.app-shell .app-container { flex:1 }
+
+/* toolbar specifics */
+.toolbar-username { color: #ffffff; }
+.toolbar-username strong { color: #ffffff; }
+.toolbar-logout {
+	background: #ffffff;
+	color: var(--primary);
+	border: 1px solid rgba(255,255,255,0.18);
+	padding: 6px 10px;
+	border-radius: 6px;
+	cursor: pointer;
+}
+.toolbar-logout:hover { filter:brightness(0.96) }

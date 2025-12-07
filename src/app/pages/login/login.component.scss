@@ -1,0 +1,11 @@
+.login-wrap {
+  max-width: 420px;
+  margin: 48px auto;
+  padding: 18px;
+}
+
+.field { margin-bottom: 12px; }
+label { display:block; margin-bottom:6px; font-weight:600 }
+input { width:100%; padding:8px; box-sizing:border-box }
+.actions { text-align:right }
+.error { color:var(--danger); margin-top:12px }

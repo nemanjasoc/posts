@@ -2,21 +2,19 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PostsApiService } from '../../services/posts-api.service';
-import { Post } from '../../models/post.model';
+import { Post, PostsSearchResponse } from '../../models/post.model';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule, NgSelectModule],
+  imports: [CommonModule, FormsModule, NgSelectModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
-  // posts API
+export class HomePage {
   posts: Post[] = [];
   total = 0;
   page = 1;
@@ -26,7 +24,6 @@ export class HomeComponent {
   selectedPost: Post | null = null;
   loading = false;
 
-  // tags to display in select
   readonly tags = ['history', 'american', 'crime', 'magical', 'french'];
 
   constructor(
@@ -55,11 +52,10 @@ export class HomeComponent {
     this.postsApi
       .searchPosts({ limit: this.pageSize, skip, query: this.searchQuery })
       .subscribe({
-        next: (response) => {
+        next: (response: PostsSearchResponse) => {
           this.posts = response.posts || [];
           this.total = response.total || 0;
           this.loading = false;
-          // clear selected post if it's not on current page
           if (this.selectedPost && !this.posts.find((post) => post.id === this.selectedPost!.id)) {
             this.selectedPost = null;
           }
@@ -89,7 +85,7 @@ export class HomeComponent {
   rowHighlightClass(post: Post): boolean {
     return !!(
       this.selectedTag &&
-      post?.tags &&
+      post.tags &&
       Array.isArray(post.tags) &&
       post.tags.includes(this.selectedTag)
     );
@@ -108,11 +104,9 @@ export class HomeComponent {
       return Array.from({ length: total }, (_, index) => index + 1);
     }
 
-    // Always try to show: [current-1, current, current+1]
     let start = Math.max(1, current - 1);
     let end = Math.min(total, start + maxVisible - 1);
 
-    // Adjust if we're near the end
     if (end - start < maxVisible - 1) {
       start = Math.max(1, end - maxVisible + 1);
     }
