@@ -1,7 +1,10 @@
 .home-wrap {
-  max-width: 800px;
+  max-width: 900px;
   margin: 24px auto;
-  padding: 12px;
+  padding: 16px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(16,24,40,0.04);
 }
 
 button { margin-top: 12px; }

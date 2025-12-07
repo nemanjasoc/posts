@@ -7,13 +7,14 @@ export class AuthService {
   private readonly storageKey = 'posts_app_user';
 
   login(username: string, password: string): boolean {
-    const name = (username || '').trim().toLowerCase();
-    const pass = (password || '').trim().toLowerCase();
-    const ok = name === 'test' && pass === 'test123'
-    if (ok) {
+    const normalizedUsername = (username || '').trim().toLowerCase();
+    const normalizedPassword = (password || '').trim().toLowerCase();
+    const isValid =
+      normalizedUsername.startsWith('test') && normalizedPassword.startsWith('test123');
+    if (isValid) {
       localStorage.setItem(this.storageKey, JSON.stringify({ username: username.trim() }));
     }
-    return ok;
+    return isValid;
   }
 
   logout(): void {
@@ -25,7 +26,7 @@ export class AuthService {
   }
 
   getUser(): { username: string } | null {
-    const v = localStorage.getItem(this.storageKey);
-    return v ? JSON.parse(v) : null;
+    const stored = localStorage.getItem(this.storageKey);
+    return stored ? JSON.parse(stored) : null;
   }
 }

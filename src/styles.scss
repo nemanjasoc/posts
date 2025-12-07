@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+	--bg: #f5f7fb;
+	--card-bg: #ffffff;
+	--primary: #2b6fbf;
+	--accent: #7c5cff;
+	--text: #1f2937;
+	--muted: #6b7280;
+	--danger: #b00020;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	background: var(--bg);
+	color: var(--text);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+	padding: 16px;
+}
+
+button {
+	background: var(--primary);
+	color: white;
+	border: none;
+	padding: 8px 14px;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+button.secondary {
+	background: transparent;
+	color: var(--primary);
+	border: 1px solid rgba(43,111,191,0.12);
+}
+
+.card {
+	background: var(--card-bg);
+	border-radius: 8px;
+	box-shadow: 0 1px 3px rgba(16,24,40,0.04), 0 1px 2px rgba(16,24,40,0.06);
+	padding: 12px;
+}
+
+/* small utility */
+.muted { color: var(--muted); }
+
+/* table row highlight for danger */
+.highlight-danger { background: rgba(176,0,32,0.06); }

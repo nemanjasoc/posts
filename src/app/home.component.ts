@@ -14,8 +14,8 @@ export class HomeComponent {
   constructor(private auth: AuthService, private router: Router) {}
 
   get username(): string {
-    const u = this.auth.getUser();
-    return u?.username || '';
+    const user = this.auth.getUser();
+    return user?.username || '';
   }
 
   logout(): void {

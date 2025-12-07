@@ -20,8 +20,8 @@ export class LoginComponent {
 
   login(): void {
     this.error = '';
-    const ok = this.auth.login(this.username, this.password);
-    if (ok) {
+    const isAuthenticated = this.auth.login(this.username, this.password);
+    if (isAuthenticated) {
       this.router.navigate(['/home']);
     } else {
       this.error = 'Incorrect username or password';
