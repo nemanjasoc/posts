@@ -1,0 +1,19 @@
+<div class="login-wrap">
+  <h2>Login</h2>
+
+  <div class="field">
+    <label>Username</label>
+    <input [(ngModel)]="username" placeholder="username" />
+  </div>
+
+  <div class="field">
+    <label>Password</label>
+    <input type="password" [(ngModel)]="password" placeholder="password" />
+  </div>
+
+  <div class="actions">
+    <button (click)="login()">Login</button>
+  </div>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+</div>
